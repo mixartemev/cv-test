@@ -20,7 +20,10 @@ args = vars(ap.parse_args())
 
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
-CLASSES = ["cup"]
+CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
+           "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
+           "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
+           "sofa", "train", "tvmonitor"]
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 # load our serialized model from disk
@@ -30,7 +33,7 @@ net = dnn.readNetFromCaffe(args["prototxt"], args["model"])
 # initialize the video stream, allow the cammera sensor to warmup,
 # and initialize the FPS counter
 print("[INFO] starting video stream...")
-vs = FileVideoStream(path='https://r4---sn-n8v7kn7d.c.drive.google.com/videoplayback?id=7a4fff766468d85e&itag=22&source=webdrive&requiressl=yes&mm=30&mn=sn-n8v7kn7d&ms=nxu&mv=u&mvi=3&pl=18&sc=yes&ttl=transient&ei=9YdNXfPbAtKlj-8P8NaY0A8&susc=dr&driveid=10WofKGFjkJQ9fTT8Y2KyWmV0diAdXtuF&app=texmex&mime=video/mp4&dur=44.350&lmt=1519733587720986&mt=1565361436&ip=195.239.106.138&ipbits=0&expire=1565376565&cp=QVNLV0RfVVVURlhOOjg4NHR0V3RuMDcx&sparams=ip,ipbits,expire,id,itag,source,requiressl,mm,mn,ms,mv,mvi,pl,sc,ttl,ei,susc,driveid,app,mime,dur,lmt,cp&signature=DC0778E309E4596E80D5CEA08AE010456B7CC1EE2A36EEE12E96F3855B35895A.98C49BEB48E7297ECC3B53E3461843DE64A012B9D8539BE3DA436249EB6376D4&key=us0&cpn=dNBbIgH5chsqXvI2&cver=20190809').start()
+vs = FileVideoStream('video.ogv').start()
 time.sleep(2.0)
 fps = FPS().start()
 
